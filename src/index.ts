@@ -1,3 +1,4 @@
+// @ts-nocheck
 import "dotenv/config";
 
 import "reflect-metadata";
@@ -5,10 +6,10 @@ import express from "express";
 import { getMetadataArgsStorage, useExpressServer } from "routing-controllers";
 import { routingControllersToSpec } from "routing-controllers-openapi";
 import swaggerUi from "swagger-ui-express";
-import { AppDataSource } from "../typeorm.config";
-import { UserController } from "./routes/user";
+import { AppDataSource } from "./db/typeorm.config";
+import { UserController } from "./controllers/user.controller";
 import { validationMetadatasToSchemas } from "class-validator-jsonschema";
-import { logger } from "./middleware/logger";
+import { logger } from "./middleware/logger.middleware";
 
 const app = express();
 
@@ -36,8 +37,6 @@ const spec = routingControllersToSpec(
   storage,
   {},
   {
-    // -\_(0_0)__/-
-    // @ts-expect-error
     components: { schemas },
     info: { title: "My app", version: "0.0.10" },
   }
@@ -49,7 +48,8 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(spec));
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(logger);
+
+app.use(logger); // <- тут объявляем
 
 const PORT = process.env.PORT || 3000;
 

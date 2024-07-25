@@ -11,8 +11,8 @@ import {
 } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import { Response } from "express";
-import { UserResponseDTO, CreateUserDTO, UpdateUserDTO } from "../schemas/user";
-import { userService } from "../services/user";
+import { UserResponseDTO, CreateUserDTO, UpdateUserDTO } from "../dto/user.dto";
+import { userService } from "../services/user.service";
 
 @JsonController("/users")
 @OpenAPI({ security: [{ basicAuth: [] }] })

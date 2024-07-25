@@ -1,5 +1,5 @@
-import { AppDataSource } from "../../typeorm.config";
-import { User } from "../entities/User";
+import { AppDataSource } from "../db/typeorm.config";
+import { User } from "../entities/User.entity";
 import { Repository } from "typeorm";
 
 class UserService {
