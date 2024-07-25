@@ -2,8 +2,6 @@ import "dotenv/config";
 import { join } from "path";
 import { DataSource } from "typeorm";
 
-console.log("Migrations Path: ", join(__dirname, "/src/migrations/*.ts"));
-
 export const AppDataSource = new DataSource({
   type: "postgres",
   host: process.env.DB_HOST,
