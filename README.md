@@ -34,7 +34,19 @@
    DB_DATABASE=mydatabase
    ```
 
-4. **Запустите сервер:**
+4. **Запустите бд:**
+
+   ```sh
+   docker compose up -d
+   ```
+
+5. **Выполните миграции:**
+
+   ```sh
+   npm run migration:run
+   ```
+
+6. **Запустите сервер:**
 
    ```sh
    npm start
